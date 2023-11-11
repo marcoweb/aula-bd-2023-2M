@@ -30,3 +30,35 @@ CREATE TABLE alunos (
     nome VARCHAR(255) NOT NULL,
     cpf CHAR(11)
 );
+
+CREATE TABLE cliente(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    agencia CHAR(6) NOT NULL,
+    numero CHAR(10) NOT NULL,
+    UNIQUE (agencia, numero)
+);
+
+
+CREATE TABLE generos(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE livros(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    id_genero INT REFERENCES genero(id)
+);
+
+CREATE TABLE autores(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL 
+);
+
+CREATE TABLE livros_possuem_autores(
+    id_livro INT NOT NULL,
+    id_autor INT NOT NULL,
+    PRIMARY KEY (id_livro, id_autor)
+);
+
+SHOW FIELDS FROM livros_possuem_autores;
